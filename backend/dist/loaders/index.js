@@ -21,7 +21,12 @@ exports.default = ({ expressApp }) => __awaiter(void 0, void 0, void 0, function
         username: 'userModel',
         model: require('../models/user').default,
     };
+    const questionModel = {
+        name: 'questionModel',
+        model: require('../models/question').default,
+    };
     typedi_1.Container.set(userModel.username, userModel.model);
+    typedi_1.Container.set(questionModel.name, questionModel.model);
     yield (0, express_1.default)({ app: expressApp });
 });
 //# sourceMappingURL=index.js.map

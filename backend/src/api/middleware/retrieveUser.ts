@@ -7,12 +7,10 @@ const retrieveUser = async (req: Request, res: Response, next: NextFunction) => 
         try{
         const userModel = Container.get('userModel') as mongoose.Model<IUser & mongoose.Document>;
         const userName = req.query.username;
-        // tslint:disable-next-line:no-console
-        console.log('userName: ', userName?.toString());
         if (userName) {
             const userRecord = await userModel.findOne({username: userName.toString()});
             if (!userRecord){
-                res.status(404).send('User not found');
+                return res.status(404).send('User not found');
             }
             return res.status(200).send(userRecord);
         }

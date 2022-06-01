@@ -11,7 +11,13 @@ export default async ({ expressApp }: { expressApp: express.Application }) => {
         model: require('../models/user').default,
     };
 
+    const questionModel = {
+        name: 'questionModel',
+        model: require('../models/question').default,
+    };
+
     Container.set(userModel.username, userModel.model);
+    Container.set(questionModel.name, questionModel.model);
 
     await expressLoader({ app: expressApp });
 }

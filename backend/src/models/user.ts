@@ -10,7 +10,8 @@ const User = new mongoose.Schema(
     },
     password: String,
 },
-{timestamps:true},
+{timestamps:true,
+collection: 'users'},
 );
 
 export default mongoose.model<IUser & mongoose.Document>('User', User);

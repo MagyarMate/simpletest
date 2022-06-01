@@ -10,16 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typedi_1 = require("typedi");
-const retrieveUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const retrieveQuestion = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const userModel = typedi_1.Container.get('userModel');
-        const userName = req.query.username;
-        if (userName) {
-            const userRecord = yield userModel.findOne({ username: userName.toString() });
-            if (!userRecord) {
-                return res.status(404).send('User not found');
+        const questionModel = typedi_1.Container.get('questionModel');
+        const questionNumber = req.query.number;
+        if (questionNumber) {
+            const questionRecord = yield questionModel.findOne({ number: questionNumber.toString() });
+            // tslint:disable-next-line: no-console
+            console.log(questionNumber);
+            // tslint:disable-next-line: no-console
+            console.log(questionRecord);
+            if (!questionRecord) {
+                return res.status(404).send('Question not found');
             }
-            return res.status(200).send(userRecord);
+            return res.status(200).send(questionRecord);
         }
         return next();
     }
@@ -27,5 +31,5 @@ const retrieveUser = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
         return next(e);
     }
 });
-exports.default = retrieveUser;
-//# sourceMappingURL=retrieveUser.js.map
+exports.default = retrieveQuestion;
+//# sourceMappingURL=retrieveQuestion.js.map
