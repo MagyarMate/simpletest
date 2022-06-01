@@ -9,9 +9,8 @@ export default (app: Router) => {
 
     route.all('/', (req: Request, res: Response, next: NextFunction) => {
         next();
-    });
-
-    route.get('/', middleware.retrieveUser, (req: Request, res: Response) => {
+    })
+    .get('/', middleware.retrieveUser, (req: Request, res: Response) => {
         res.status(200).send('Get user');
     });
 }
