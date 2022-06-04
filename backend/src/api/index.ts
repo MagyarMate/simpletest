@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import user from './routes/user';
-import question from './routes/question';
+import userRoutes from './routes/user.routes';
+import quizRoutes from './routes/quiz.routes';
 
 export default () => {
     const app = Router();
-    user(app);
-    question(app);
+    userRoutes(app);
+    quizRoutes(app);
 
     return app;
 };

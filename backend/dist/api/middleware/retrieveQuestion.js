@@ -14,12 +14,13 @@ const retrieveQuestion = (req, res, next) => __awaiter(void 0, void 0, void 0, f
     try {
         const questionModel = typedi_1.Container.get('questionModel');
         const questionNumber = req.query.number;
+        const questionNumber2 = req.body.number;
+        // tslint:disable-next-line: no-console
+        console.log(questionNumber2);
+        // tslint:disable-next-line: no-console
+        console.log('Proba');
         if (questionNumber) {
             const questionRecord = yield questionModel.findOne({ number: questionNumber.toString() });
-            // tslint:disable-next-line: no-console
-            console.log(questionNumber);
-            // tslint:disable-next-line: no-console
-            console.log(questionRecord);
             if (!questionRecord) {
                 return res.status(404).send('Question not found');
             }

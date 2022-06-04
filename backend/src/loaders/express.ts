@@ -19,6 +19,6 @@ export default ({ app }: { app: express.Application }) => {
     app.use(config.api.prefix, routes());
 
     app.get('/', (req, res) => {
-        res.send('Simple Test');
+        res.send('Simple Test Back-end');
     });
 }

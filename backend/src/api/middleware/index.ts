@@ -1,7 +1,5 @@
-import retrieveUser from './retrieveUser';
-import retrieveQuestion from './retrieveQuestion';
+import UsersMiddleware from './users.middleware';
 
 export default {
-    retrieveUser,
-    retrieveQuestion,
+    UsersMiddleware,
 };
