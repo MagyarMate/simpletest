@@ -6,7 +6,7 @@ const log: debug.IDebugger = debug('simpletest:quiz_controller');
 export class QuizController{
     async getQuestionByNumber(req: Request, res: Response){
         log(req.body);
-        const question = await quizService.readById(req.body.number.toString() as string);
+        const question = await quizService.readById(req.query.number?.toString() as string);
         if(!question){
             return res.status(404).send('Question not found');
         }
@@ -14,13 +14,13 @@ export class QuizController{
     }
 
     async updateQuestionByNumber(req: Request, res: Response){
-        quizService.patchById(req.body.number.toString() as string, req.body);
+        quizService.patchById(req.query.number?.toString() as string, req.body);
         return res.status(200).send('Question updated');
     }
 
     async checkQuestion(req: Request, res: Response, next: NextFunction){
         try{
-            const question = await quizService.readById(req.body.number.toString() as string);
+            const question = await quizService.readById(req.query.number?.toString() as string);
             if(!question){
                 return res.status(404).send('Question not found');
             }
@@ -39,8 +39,8 @@ export class QuizController{
     }
 
     async getQuizResultList(req: Request, res: Response){
-        log('Req body currentUser:%o',req.body.currentUser);
-        const currentUser = req.body.currentUser;
+        log('Req body currentUser:%o',req.query.username);
+        const currentUser = req.query.username?.toString() as string;
         const results = await quizService.listResults({username: currentUser});
         if(!results){
             return res.status(500).send('Internal server error');

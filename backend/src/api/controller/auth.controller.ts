@@ -11,7 +11,7 @@ export class AuthController{
         if(!token){
             return res.status(401).send('Invalid credentials');
         }
-        return res.status(200).json(token);
+        return res.status(200).json({username: req.body.username, token: token});
     }
 
     async verifyUser(req: Request, res: Response, next: NextFunction){

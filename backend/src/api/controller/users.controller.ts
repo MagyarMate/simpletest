@@ -12,8 +12,7 @@ export class UsersController{
     }
 
     async getUserByName(req: Request, res: Response){
-        log(req.body);
-        const user = await usersService.readById(req.body.username?.toString() as string);
+        const user = await usersService.readById(req.query.username?.toString() as string);
         if(!user){
             return res.status(404).send('User not found');
         }

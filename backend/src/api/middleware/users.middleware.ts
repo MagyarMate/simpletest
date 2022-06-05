@@ -14,7 +14,7 @@ class UsersMiddleware{
     }
 
     async validateUserName(req: Request, res: Response, next: NextFunction){
-        if(req.body && req.body.username){
+        if(req.body && req.body.username || req.query && req.query.username){
             return next();
         } else {
             res.status(400).send('Missing required fields');
