@@ -26,6 +26,7 @@ export default async ({ expressApp }: { expressApp: express.Application }) => {
     log('Loading controllers');
     Container.set('userController', require('../api/controller/users.controller').default);
     Container.set('quizController', require('../api/controller/quiz.controller').default);
+    Container.set('authController', require('../api/controller/auth.controller').default);
 
     await expressLoader({ app: expressApp });
 }

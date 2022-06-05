@@ -9,7 +9,8 @@ async function startServer() {
     const app = express();
     log('Loading application...');
     await require('./loaders').default({ expressApp: app });
-    log('Start listening')
+    log('Start listening');
+
     app.listen( config.port, () => {
         log('Server started at http://localhost:%o', config.port);
     }).on('error', err=>{
