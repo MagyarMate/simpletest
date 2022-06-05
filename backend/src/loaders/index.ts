@@ -19,9 +19,15 @@ export default async ({ expressApp }: { expressApp: express.Application }) => {
         model: require('../models/question').default,
     };
 
+    const quizResultModel = {
+        name: 'quizResultModel',
+        model: require('../models/quizresult').default,
+    }
+
     log('Loading models');
     Container.set(userModel.name, userModel.model);
     Container.set(questionModel.name, questionModel.model);
+    Container.set(quizResultModel.name, quizResultModel.model);
 
     log('Loading controllers');
     Container.set('userController', require('../api/controller/users.controller').default);

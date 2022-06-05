@@ -20,6 +20,6 @@ export default (app: Router) => {
         next();
     })
     .get('/', usersMiddleware.validateUserName, usersController.getUserByName)
-    .post('/', usersMiddleware.validateRequiredUserBodyFields, usersController.checkUserDuplication, usersController.createUser)
+    .post('/', usersMiddleware.validateRequiredUserBodyFields, authController.verifyUser, usersController.checkUserDuplication, usersController.createUser)
     .delete('/', usersMiddleware.validateUserName, authController.verifyUser, usersController.removeUserByName);
 }

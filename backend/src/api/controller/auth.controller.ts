@@ -1,9 +1,10 @@
 import {Request, Response, NextFunction} from 'express';
 import authService from '../../services/auth.service';
+import { IUserAuth } from '../../interfaces/IUserAuth';
 import argon2 from 'argon2'
 import debug from 'debug';
 
-const log: debug.IDebugger = debug('simpletest:user_controller');
+const log: debug.IDebugger = debug('simpletest:auth_controller');
 export class AuthController{
     async createToken(req: Request, res: Response){
         const token = await authService.create_token(req.body.username, req.body.password);
@@ -21,7 +22,8 @@ export class AuthController{
                 return res.status(401).send('Invalid token');
             }
 
-            const decoded = await authService.verify_token(token);
+            const decoded: IUserAuth = await authService.verify_token(token);
+            req.body.currentUser = decoded.username;
             next();
         }catch(err){
             if(err){

@@ -1,6 +1,7 @@
 import usersDao from '../interfaces/dao/users.dao';
 import argon2 from 'argon2'
 import { IUser } from '../interfaces/IUser';
+import { IUserAuth } from '../interfaces/IUserAuth';
 import jwt from 'jsonwebtoken';
 import { SignOptions } from 'jsonwebtoken';
 import config from '../config';
@@ -25,29 +26,27 @@ class AuthService{
 
         // Check if password is correct
         const isPasswordCorrect = await argon2.verify(userFromDb.password, password);
-
+        const payload = { username: userName} as IUserAuth;
         if(isPasswordCorrect){
             const SignInOptions : SignOptions = {
                 algorithm: 'HS256',
                 expiresIn: '1h'
             }
-            return jwt.sign({userName}, config.secret as string, SignInOptions);
+            return jwt.sign(payload, config.secret as string, SignInOptions);
         }
 
         return null;
     }
 
-    verify_token(token: string): Promise<string>{ // Todo create interface for token
+    verify_token(token: string): Promise<IUserAuth>{ // Todo create interface for token
         const secret = config.secret;
         const verifyOptions: jwt.VerifyOptions = {
             algorithms: ['HS256']
         }
         return new Promise((resolve, reject) => {
             jwt.verify(token, secret, verifyOptions, (err, decoded) => {
-                if(err){
-                    reject(err);
-                }
-                resolve(decoded as string);
+                if(err) return reject(err);
+                resolve(decoded as IUserAuth);
             });
         });
     };

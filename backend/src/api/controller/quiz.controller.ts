@@ -30,6 +30,46 @@ export class QuizController{
         }
     }
 
+    async getRandomQuestionList(req: Request, res: Response){
+        const question = await quizService.list();
+        if(!question){
+            return res.status(500).send('Internal server error');
+        }
+        return res.status(200).send(question);
+    }
+
+    async getQuizResultList(req: Request, res: Response){
+        log('Req body currentUser:%o',req.body.currentUser);
+        const currentUser = req.body.currentUser;
+        const results = await quizService.listResults({username: currentUser});
+        if(!results){
+            return res.status(500).send('Internal server error');
+        }
+        return res.status(200).send(results);
+    }
+
+    async getQuizResult(req: Request, res: Response){
+        const currentUser = req.body.currentUser;
+        const resultId = req.params.resultId;
+        const result = await quizService.getQuizResultById(resultId as string);
+        if(!result){
+            return res.status(404).send('Result not found');
+        }
+        return res.status(200).send(result);
+    }
+
+    async createQuizResult(req: Request, res: Response){
+        const userName = req.body.currentUser;
+        const answerList = req.body.answerList;
+        log('Req body answerlist:%o',req.body.answerList);
+        log('Req body currentUser:%o',req.body.currentUser);
+        const quizId = await quizService.createQuizResult(answerList, userName);
+        if(!quizId){
+            return res.status(500).send('Internal server error');
+        }
+        return res.status(200).send(quizId);
+    }
+
 }
 
 export default new QuizController();
