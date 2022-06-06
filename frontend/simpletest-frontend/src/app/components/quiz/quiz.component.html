@@ -1,0 +1,20 @@
+<div class="main-div">
+    <mat-card>
+        <mat-card-title>
+            Generated quiz
+        </mat-card-title>
+        <mat-card-content>
+            <div *ngIf="quiz">
+                <ol>
+                    <li *ngFor="let question of quiz">
+                        <app-questionview (questionUpdateEvent)="updateAnswerList($event)" [questionInput]="question"></app-questionview>
+                    </li>
+                </ol>
+            </div>
+
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-flat-button color="primary" (click)="handleSubmit()">Submit</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

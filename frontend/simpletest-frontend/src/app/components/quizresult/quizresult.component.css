@@ -1,0 +1,18 @@
+.buttons {
+    display: flex;
+    flex-grow: 1;
+}
+
+.results-card {
+    min-width: 800px;
+    max-width: 1000px;
+}
+
+.main-div {
+    /*height: 100vh;*/
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}

@@ -1,0 +1,8 @@
+<h2>Results of generated quiz: {{quizId}}</h2>
+<div *ngIf="refreshed === true">
+    <ol>
+        <li *ngFor="let question of quizResultAnswers">
+            <app-questionview [questionInput]="question.question" [questionView]="question.questionView"></app-questionview>
+        </li>
+    </ol>
+</div>

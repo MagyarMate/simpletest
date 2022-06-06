@@ -1,0 +1,54 @@
+<div class="main-div">
+    <mat-card class="results-card">
+        <mat-card-header>
+            <h2>Your previous results</h2>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngIf="getResultNumber() > 0; else noResultWarning">
+                <table mat-table [dataSource]="summaryResults" class="mat-elevation-z8 demo-table">
+                    <!-- userId Column -->
+                    <ng-container matColumnDef="userId">
+                        <th mat-header-cell *matHeaderCellDef>User</th>
+                        <td mat-cell *matCellDef="let result">{{result.userId}}</td>
+                    </ng-container>
+
+                    <!-- numberOfQuestions Column -->
+                    <ng-container matColumnDef="numberOfQuestions">
+                        <th mat-header-cell *matHeaderCellDef>Number of questions</th>
+                        <td mat-cell *matCellDef="let result">{{result.numberOfQuestions}}</td>
+                    </ng-container>
+
+                    <!-- numberOfCorrectAnswers Column -->
+                    <ng-container matColumnDef="numberOfCorrectAnswers">
+                        <th mat-header-cell *matHeaderCellDef>Correct answers</th>
+                        <td mat-cell *matCellDef="let result">{{result.numberOfCorrectAnswers}}</td>
+                    </ng-container>
+
+                    <!-- result Column -->
+                    <ng-container matColumnDef="result">
+                        <th mat-header-cell *matHeaderCellDef>Result</th>
+                        <td mat-cell *matCellDef="let result">{{result.result}}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+                    <tr mat-row (click)="handleClick(row)" [class.demo-row-is-clicked]="clickedRow === row" *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <ng-template #noResultWarning>
+                <h3>You have no results yet</h3>
+            </ng-template>
+            <div *ngIf="clickedRow">
+                <h1></h1>
+                <mat-divider stye="margin-top:25px"></mat-divider>
+                <app-result [quizId]="clickedRow.quizId"></app-result>
+            </div>
+
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <div *ngIf="clickedRow">
+                <button mat-flat-button color="primary" (click)="clickedRow=null">Close</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,0 +1,13 @@
+<div class="main-div">
+    <mat-card class="results-card">
+        <!-- <mat-card-header>
+          <h2>Your previous results</h2>
+      </mat-card-header> -->
+        <mat-card-content>
+            <app-result [quizId]="quizId"></app-result>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-flat-button color="primary" (click)="handleClose()">Close</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

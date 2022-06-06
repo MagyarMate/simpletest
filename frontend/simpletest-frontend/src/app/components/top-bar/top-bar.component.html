@@ -1,0 +1,10 @@
+<mat-toolbar>
+    <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" routerLink="/home">
+    <mat-icon>home</mat-icon>
+  </button>
+    <span><div routerLink="/home">Simpletest</div></span>
+    <span class="spacer2"></span>
+    <button *ngIf="isLoggedIn()" routerLink="/quiz" mat-button class="login-icon" aria-label="New quiz">New quiz</button>
+    <span class="example-spacer"></span>
+    <button *ngIf="isLoggedIn()" routerLink="/logout" mat-button class="login-icon" aria-label="Login button">Logout</button>
+</mat-toolbar>

@@ -1,0 +1,9 @@
+<section class="header-section">
+    <label id="example-radio-group-label">{{question}}</label>
+    <mat-checkbox class="example-margin" [(ngModel)]="omitQuestion" labelPosition="before" (change)="setQuestionOmission()">Remove question</mat-checkbox>
+</section>
+<mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="selectedAnswer" [disabled]="isDisabled" (change)="setAnswer()">
+    <mat-radio-button class="example-radio-button" *ngFor="let answer of answers; index as i" [value]="i+1">
+        <div [style]="answerColor(i+1)">{{answer}}</div>
+    </mat-radio-button>
+</mat-radio-group>
