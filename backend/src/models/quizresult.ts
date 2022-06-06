@@ -14,7 +14,7 @@ const QuizResult = new mongoose.Schema(
         required: [true, 'UserId is required'],
     },
     questions: [{
-        questionId: String,
+        questionNumber: String,
         answer: Number,
         isCorrect: Boolean,
     }]
