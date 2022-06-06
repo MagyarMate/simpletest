@@ -19,7 +19,7 @@ exports.default = ({ app }) => {
     app.use(express_1.default.urlencoded({ extended: true }));
     app.use(config_1.default.api.prefix, (0, api_1.default)());
     app.get('/', (req, res) => {
-        res.send('Simple Test');
+        res.send('Simple Test Back-end');
     });
 };
 //# sourceMappingURL=express.js.map

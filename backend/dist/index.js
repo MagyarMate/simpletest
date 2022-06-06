@@ -15,13 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const express_1 = __importDefault(require("express"));
 const config_1 = __importDefault(require("./config"));
+const debug_1 = __importDefault(require("debug"));
+const log = (0, debug_1.default)('simpletest:app');
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
+        log('Starting server...');
         const app = (0, express_1.default)();
+        log('Loading application...');
         yield require('./loaders').default({ expressApp: app });
+        log('Start listening');
         app.listen(config_1.default.port, () => {
-            // tslint:disable-next-line:no-console
-            console.log(`Server started at http://localhost:${config_1.default.port}`);
+            log('Server started at http://localhost:%o', config_1.default.port);
         }).on('error', err => {
             process.exit(1);
         });
