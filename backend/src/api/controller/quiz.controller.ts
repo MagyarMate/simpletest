@@ -67,7 +67,7 @@ export class QuizController{
         if(!quizId){
             return res.status(500).send('Internal server error');
         }
-        return res.status(200).send(quizId);
+        return res.status(200).send({quizId});
     }
 
 }
