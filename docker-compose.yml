@@ -8,17 +8,17 @@ services:
       - '27017:27017'
 
   mongo_seed:
-    image: magyarr91/mongo_seed
+    image: magyarr91/mongo_seed:1.0.0
     links:
       - mongo-db
   
   server:
-    image: magyarr91/simpletest_backend
+    image: magyarr91/simpletest_backend:1.0.0
     ports:
       - '3000:3000'
     links:
       - mongo-db
   client:
-    image: magyarr91/simpletest_frontend
+    image: magyarr91/simpletest_frontend:1.0.0
     ports:
       - '80:80'
