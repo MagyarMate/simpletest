@@ -6,7 +6,7 @@ Simpletest is a quiz app built on MEAN stack
 
 1. Make sure the Docker Engine and Compose are installed.
 
-2. Download the latest ReportPortal Docker compose file from here. You can make it by run the following command:
+2. Download the latest Simpletest Docker compose file from here. You can make it by run the following command:
 
 ```bash
 curl -LO https://raw.githubusercontent.com/MagyarMate/simpletest/master/docker-compose.yml
